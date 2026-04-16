@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mahek Mujawar | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --bg:#0d0f1a;--bg2:#12152a;--card:#1a1e35;
+  --accent:#6c63ff;--accent2:#ff6584;--gold:#f5c542;
+  --text:#e8eaf6;--muted:#9095b5;--border:rgba(108,99,255,0.2);
+  --shadow:0 8px 32px rgba(108,99,255,0.15);--r:16px;
+}
+[data-theme="light"]{
+  --bg:#f5f6ff;--bg2:#eceeff;--card:#fff;
+  --text:#1a1e35;--muted:#5a5f80;--border:rgba(108,99,255,0.15);
+  --shadow:0 8px 32px rgba(108,99,255,0.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:background .4s,color .4s;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(13,15,26,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:background .4s;}
+[data-theme="light"] nav{background:rgba(245,246,255,.9);}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{font-size:.88rem;font-weight:500;color:var(--muted);transition:color .3s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:.8rem;}
+.toggle-btn{background:none;border:1px solid var(--border);color:var(--muted);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1rem;transition:all .3s;display:flex;align-items:center;justify-content:center;}
+.toggle-btn:hover{border-color:var(--accent);color:var(--accent);}
+.ham{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;}
+.mob-menu{display:none;flex-direction:column;position:fixed;top:68px;left:0;right:0;z-index:999;background:var(--bg2);border-bottom:1px solid var(--border);}
+.mob-menu.open{display:flex;}
+.mob-menu a{padding:.9rem 5%;color:var(--muted);border-bottom:1px solid var(--border);font-weight:500;}
+.mob-menu a:hover{color:var(--accent);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:calc(68px + 3rem) 5% 4rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 70% 50%,rgba(108,99,255,.18) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(255,101,132,.12) 0%,transparent 60%);}
+.hero-inner{position:relative;z-index:1;display:flex;align-items:center;gap:4rem;max-width:1100px;width:100%;flex-wrap:wrap;animation:fadeUp .9s ease both;}
+.photo-wrap{flex-shrink:0;}
+.photo{width:210px;height:210px;object-fit:cover;border-radius:50%;border:4px solid var(--accent);box-shadow:0 0 0 10px rgba(108,99,255,.12),var(--shadow);transition:transform .4s;}
+.photo:hover{transform:scale(1.05);}
+.photo-ph{width:210px;height:210px;border-radius:50%;background:var(--card);border:4px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:4rem;color:var(--muted);}
+.hero-text{flex:1;min-width:260px;}
+.greet{color:var(--accent);font-size:.95rem;font-weight:500;letter-spacing:.1em;margin-bottom:.3rem;}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.1;margin-bottom:.5rem;background:linear-gradient(135deg,var(--text) 55%,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{color:var(--accent2);font-size:1rem;font-weight:500;margin-bottom:1rem;}
+.hero-bio{color:var(--muted);font-size:.95rem;line-height:1.75;max-width:500px;margin-bottom:2rem;}
+.btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn{padding:.72rem 1.8rem;border-radius:50px;font-weight:600;font-size:.9rem;transition:all .3s;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;}
+.btn-p{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(108,99,255,.4);}
+.btn-o{border:2px solid var(--accent);color:var(--accent);}
+.btn-o:hover{background:var(--accent);color:#fff;}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--muted);font-size:1.2rem;animation:bounce 2s infinite;}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+.sec{padding:5.5rem 5%;}
+.alt{background:var(--bg2);}
+.wrap{max-width:1100px;margin:0 auto;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;text-align:center;margin-bottom:3rem;}
+.sec-title span{color:var(--accent);}
+.sub-head{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:1.4rem;border-left:4px solid var(--accent);padding-left:1rem;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.4rem;}
+.acard{background:var(--card);border-radius:var(--r);padding:2rem;border:1px solid var(--border);text-align:center;transition:transform .3s,box-shadow .3s;}
+.acard:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+.acard i{font-size:2rem;color:var(--accent);margin-bottom:.8rem;}
+.acard h3{font-size:1rem;font-weight:700;margin-bottom:.6rem;}
+.acard p{color:var(--muted);font-size:.88rem;line-height:1.65;}
+
+/* CERTS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.4rem;}
+.cert-card{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:transform .3s,box-shadow .3s;}
+.cert-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+.cert-img{position:relative;height:175px;background:var(--bg2);overflow:hidden;}
+.cert-img img{width:100%;height:100%;object-fit:cover;}
+.cert-img .ov{position:absolute;inset:0;background:rgba(108,99,255,.7);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff;opacity:0;transition:opacity .3s;}
+.cert-card:hover .ov{opacity:1;}
+.cert-body{padding:1rem 1.2rem;}
+.cert-body h4{font-weight:700;margin-bottom:.25rem;}
+.cert-body p{font-size:.82rem;color:var(--muted);}
+
+/* AWARDS */
+.award-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.4rem;margin-top:2.5rem;}
+.award-card{background:var(--card);border-radius:var(--r);padding:1.8rem;border:1px solid var(--border);text-align:center;transition:transform .3s,box-shadow .3s;}
+.award-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+.award-card i{font-size:1.8rem;color:var(--gold);margin-bottom:.7rem;}
+.award-card h4{font-weight:700;margin-bottom:.4rem;}
+.award-card p{color:var(--muted);font-size:.85rem;line-height:1.6;}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.8rem;}
+.proj-card{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);transition:transform .3s,box-shadow .3s;}
+.proj-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);}
+.proj-img{position:relative;height:190px;background:linear-gradient(135deg,var(--accent),var(--accent2));overflow:hidden;}
+.proj-img img{width:100%;height:100%;object-fit:cover;}
+.badge{position:absolute;top:.9rem;right:.9rem;background:rgba(0,0,0,.6);color:#fff;padding:.25rem .75rem;border-radius:50px;font-size:.75rem;font-weight:600;backdrop-filter:blur(6px);}
+.proj-body{padding:1.4rem;}
+.proj-body h3{font-weight:700;font-size:1.05rem;margin-bottom:.5rem;}
+.proj-body p{color:var(--muted);font-size:.86rem;line-height:1.65;margin-bottom:.9rem;}
+.tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.9rem;}
+.tags span{background:rgba(108,99,255,.15);color:var(--accent);padding:.2rem .7rem;border-radius:50px;font-size:.76rem;font-weight:500;}
+.btn-sm{padding:.45rem 1.1rem;font-size:.82rem;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:50px;font-weight:600;transition:all .3s;display:inline-flex;align-items:center;gap:.4rem;}
+.btn-sm:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(108,99,255,.35);}
+
+/* GALLERY */
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;}
+.gal-item{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1;cursor:pointer;background:var(--card);}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.gal-item:hover img{transform:scale(1.08);}
+.gal-ov{position:absolute;inset:0;background:rgba(108,99,255,.65);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;opacity:0;transition:opacity .3s;}
+.gal-item:hover .gal-ov{opacity:1;}
+
+/* CONTACT */
+.con-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.con-item{display:flex;align-items:flex-start;gap:1.2rem;padding:1.1rem;background:var(--card);border-radius:var(--r);border:1px solid var(--border);margin-bottom:.9rem;transition:transform .3s;}
+.con-item:hover{transform:translateX(6px);}
+.con-item i{font-size:1.2rem;color:var(--accent);margin-top:3px;}
+.con-item strong{display:block;font-size:.75rem;color:var(--muted);margin-bottom:.15rem;}
+.con-item a{color:var(--text);font-weight:500;font-size:.9rem;word-break:break-all;}
+.con-item a:hover{color:var(--accent);}
+.con-card{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--r);padding:2.5rem;color:#fff;text-align:center;}
+.con-card h3{font-family:'Playfair Display',serif;font-size:1.7rem;margin-bottom:.9rem;}
+.con-card p{font-size:.92rem;line-height:1.7;margin-bottom:2rem;opacity:.92;}
+.socials{display:flex;justify-content:center;gap:.9rem;flex-wrap:wrap;}
+.soc{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.15rem;color:#fff;transition:all .3s;}
+.soc:hover{background:rgba(255,255,255,.38);transform:translateY(-3px);}
+
+footer{text-align:center;padding:1.8rem 5%;background:var(--bg2);border-top:1px solid var(--border);color:var(--muted);font-size:.86rem;}
+
+/* LIGHTBOX */
+.lb{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.93);align-items:center;justify-content:center;flex-direction:column;padding:2rem;}
+.lb.open{display:flex;}
+.lb img{max-width:90vw;max-height:78vh;border-radius:12px;}
+.lb p{color:#fff;margin-top:.9rem;font-size:.92rem;}
+.lb-close{position:absolute;top:1.5rem;right:2rem;background:rgba(255,255,255,.12);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.lb-close:hover{background:rgba(255,255,255,.25);}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links{display:none;}.ham{display:block;}
+  .hero-inner{flex-direction:column;text-align:center;gap:2rem;}
+  .hero-bio{margin:0 auto 1.5rem;}
+  .btns{justify-content:center;}
+  .con-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .photo,.photo-ph{width:160px;height:160px;}
+  .sec{padding:3.5rem 5%;}
+  .gal-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">Mahek Mujawar</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="toggle-btn" id="themeBtn"><i class="fas fa-sun" id="themeIcon"></i></button>
+    <button class="ham" id="ham"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <a href="#home" onclick="closeMob()">Home</a>
+  <a href="#about" onclick="closeMob()">About</a>
+  <a href="#achievements" onclick="closeMob()">Achievements</a>
+  <a href="#projects" onclick="closeMob()">Projects</a>
+  <a href="#gallery" onclick="closeMob()">Gallery</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="photo-wrap">
+      <!-- YOUR PHOTO: rename your photo to "photo.jpg" and put in assets/images/ -->
+      <img src="assets/images/photo.jpg" alt="Mahek Mujawar" class="photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="photo-ph" style="display:none"><i class="fas fa-user"></i></div>
+    </div>
+    <div class="hero-text">
+      <p class="greet">Hello, I'm</p>
+      <h1 class="hero-name">Mahek Mujawar</h1>
+      <p class="hero-sub">Student · Aspiring Developer · Tech Enthusiast</p>
+      <!-- EDIT: Change the bio below to your own words -->
+      <p class="hero-bio">Passionate about technology, artificial intelligence, and web development. Currently a student building real-world skills through hands-on projects like Ai4A, Design Thinking, and ACE. Always eager to learn and grow.</p>
+      <div class="btns">
+        <a href="#projects" class="btn btn-p">View My Projects</a>
+        <a href="#contact" class="btn btn-o">Contact Me</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <h2 class="sec-title">About <span>Me</span></h2>
+    <div class="about-grid">
+      <div class="acard reveal">
+        <i class="fas fa-graduation-cap"></i>
+        <h3>Education</h3>
+        <!-- EDIT: Your school/college name, stream, year -->
+        <p>Your School / College Name<br/>Stream / Course<br/>Current Year</p>
+      </div>
+      <div class="acard reveal">
+        <i class="fas fa-heart"></i>
+        <h3>Interests</h3>
+        <p>Artificial Intelligence · Web Development · Design Thinking · Technology · Cricket</p>
+      </div>
+      <div class="acard reveal">
+        <i class="fas fa-bullseye"></i>
+        <h3>Goals</h3>
+        <p>To become a skilled software developer and contribute to innovative AI-driven solutions that make a real-world impact.</p>
+      </div>
+      <div class="acard reveal">
+        <i class="fas fa-star"></i>
+        <h3>Strengths</h3>
+        <p>Quick Learner · Problem Solver · Creative Thinker · Team Player · Adaptable</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="sec alt" id="achievements">
+  <div class="wrap">
+    <h2 class="sec-title">Achievements &amp; <span>Certificates</span></h2>
+
+    <h3 class="sub-head">Certificates</h3>
+    <div class="cert-grid">
+
+      <div class="cert-card reveal" onclick="openLB('assets/certificates/c1.jpg','Coursera Certificate')">
+        <div class="cert-img">
+          <!-- YOUR CERT: put your Coursera cert as assets/certificates/c1.jpg -->
+          <img src="assets/certificates/c1.jpg" alt="Coursera" onerror="this.parentElement.style.background='linear-gradient(135deg,#6c63ff,#ff6584)'"/>
+          <div class="ov"><i class="fas fa-expand"></i></div>
+        </div>
+        <div class="cert-body">
+          <h4>Coursera</h4>
+          <!-- EDIT: Add exact course name -->
+          <p>Course Name · Coursera Platform</p>
+        </div>
+      </div>
+
+      <div class="cert-card reveal" onclick="openLB('assets/certificates/c2.jpg','Cisco NetAcad Certificate')">
+        <div class="cert-img">
+          <img src="assets/certificates/c2.jpg" alt="NetAcad" onerror="this.parentElement.style.background='linear-gradient(135deg,#6c63ff,#ff6584)'"/>
+          <div class="ov"><i class="fas fa-expand"></i></div>
+        </div>
+        <div class="cert-body">
+          <h4>Cisco NetAcad</h4>
+          <p>Course Name · Cisco NetAcad</p>
+        </div>
+      </div>
+
+      <div class="cert-card reveal" onclick="openLB('assets/certificates/c3.jpg','Yuva AI Certificate')">
+        <div class="cert-img">
+          <img src="assets/certificates/c3.jpg" alt="Yuva AI" onerror="this.parentElement.style.background='linear-gradient(135deg,#6c63ff,#ff6584)'"/>
+          <div class="ov"><i class="fas fa-expand"></i></div>
+        </div>
+        <div class="cert-body">
+          <h4>Yuva AI</h4>
+          <p>Programme Name · Yuva AI</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="award-grid">
+      <!-- EDIT: Replace with your real awards/events -->
+      <div class="award-card reveal">
+        <i class="fas fa-trophy"></i>
+        <h4>Award / Event Name</h4>
+        <p>Brief description — what you won or participated in, year, and organizer.</p>
+      </div>
+      <div class="award-card reveal">
+        <i class="fas fa-medal"></i>
+        <h4>Award / Event Name</h4>
+        <p>Brief description — what you won or participated in, year, and organizer.</p>
+      </div>
+      <div class="award-card reveal">
+        <i class="fas fa-certificate"></i>
+        <h4>Award / Event Name</h4>
+        <p>Brief description — what you won or participated in, year, and organizer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec" id="projects">
+  <div class="wrap">
+    <h2 class="sec-title">My <span>Projects</span></h2>
+    <div class="proj-grid">
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <!-- YOUR IMAGE: assets/images/proj_ai4a.jpg -->
+          <img src="assets/images/proj_ai4a.jpg" alt="Ai4A" onerror="this.style.display='none'"/>
+          <span class="badge">Ai4A</span>
+        </div>
+        <div class="proj-body">
+          <h3>Ai4A Project</h3>
+          <!-- EDIT: Describe your actual project -->
+          <p>Describe your Ai4A project — what problem it solves, what tools/tech you used, and what you learned from it.</p>
+          <div class="tags"><span>AI</span><span>Python</span><span>Machine Learning</span></div>
+          <!-- EDIT: Add your real GitHub/project link -->
+          <a href="#" class="btn-sm" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <img src="assets/images/proj_design.jpg" alt="Design Thinking" onerror="this.style.display='none'"/>
+          <span class="badge">Design</span>
+        </div>
+        <div class="proj-body">
+          <h3>Design Thinking Project</h3>
+          <p>Describe your Design Thinking project — the problem statement, your design process, and the final solution.</p>
+          <div class="tags"><span>Design</span><span>UX</span><span>Innovation</span></div>
+          <a href="#" class="btn-sm" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <img src="assets/images/proj_ace.jpg" alt="ACE Project" onerror="this.style.display='none'"/>
+          <span class="badge">ACE</span>
+        </div>
+        <div class="proj-body">
+          <h3>ACE Project</h3>
+          <p>Describe your ACE project — the objectives, technologies used, your role, and what you accomplished.</p>
+          <div class="tags"><span>ACE</span><span>Web Dev</span><span>Teamwork</span></div>
+          <a href="#" class="btn-sm" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="sec alt" id="gallery">
+  <div class="wrap">
+    <h2 class="sec-title"><span>Gallery</span></h2>
+    <p style="text-align:center;color:var(--muted);margin-top:-2rem;margin-bottom:2rem;">Photos, certificates &amp; memories</p>
+    <div class="gal-grid">
+      <!-- YOUR IMAGES: name them gallery1.jpg, gallery2.jpg etc. in assets/images/ -->
+      <!-- Add or remove these blocks as needed -->
+      <div class="gal-item reveal" onclick="openLB('assets/images/gallery1.jpg','Photo')">
+        <img src="assets/images/gallery1.jpg" alt="Gallery" onerror="this.parentElement.style.display='none'"/>
+        <div class="gal-ov"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gal-item reveal" onclick="openLB('assets/images/gallery2.jpg','Photo')">
+        <img src="assets/images/gallery2.jpg" alt="Gallery" onerror="this.parentElement.style.display='none'"/>
+        <div class="gal-ov"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gal-item reveal" onclick="openLB('assets/images/gallery3.jpg','Photo')">
+        <img src="assets/images/gallery3.jpg" alt="Gallery" onerror="this.parentElement.style.display='none'"/>
+        <div class="gal-ov"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gal-item reveal" onclick="openLB('assets/certificates/c1.jpg','Coursera Certificate')">
+        <img src="assets/certificates/c1.jpg" alt="Certificate" onerror="this.parentElement.style.display='none'"/>
+        <div class="gal-ov"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gal-item reveal" onclick="openLB('assets/certificates/c2.jpg','NetAcad Certificate')">
+        <img src="assets/certificates/c2.jpg" alt="Certificate" onerror="this.parentElement.style.display='none'"/>
+        <div class="gal-ov"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gal-item reveal" onclick="openLB('assets/certificates/c3.jpg','Yuva AI Certificate')">
+        <img src="assets/certificates/c3.jpg" alt="Certificate" onerror="this.parentElement.style.display='none'"/>
+        <div class="gal-ov"><i class="fas fa-search-plus"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <h2 class="sec-title">Contact <span>Me</span></h2>
+    <div class="con-grid">
+      <div>
+        <!-- EDIT: All your real contact details -->
+        <div class="con-item reveal">
+          <i class="fas fa-envelope"></i>
+          <div><strong>Email</strong><a href="mailto:youremail@gmail.com">youremail@gmail.com</a></div>
+        </div>
+        <div class="con-item reveal">
+          <i class="fas fa-phone"></i>
+          <div><strong>Phone</strong><a href="tel:+91XXXXXXXXXX">+91 XXXXXXXXXX</a></div>
+        </div>
+        <div class="con-item reveal">
+          <i class="fab fa-linkedin"></i>
+          <div><strong>LinkedIn</strong><a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></div>
+        </div>
+        <div class="con-item reveal">
+          <i class="fab fa-github"></i>
+          <div><strong>GitHub</strong><a href="https://github.com/mahekmujawar1006" target="_blank">github.com/mahekmujawar1006</a></div>
+        </div>
+      </div>
+      <div class="con-card reveal">
+        <h3>Let's Connect!</h3>
+        <p>Open to opportunities, collaborations, and conversations about technology, AI, and innovation.</p>
+        <div class="socials">
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" class="soc"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/mahekmujawar1006" target="_blank" class="soc"><i class="fab fa-github"></i></a>
+          <a href="mailto:youremail@gmail.com" class="soc"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <strong>Mahek Mujawar</strong>. All rights reserved.</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLB()">
+  <button class="lb-close" onclick="closeLB()"><i class="fas fa-times"></i></button>
+  <img id="lbImg" src="" alt=""/>
+  <p id="lbCap"></p>
+</div>
+
+<script>
+// THEME
+const html=document.documentElement,btn=document.getElementById('themeBtn'),icon=document.getElementById('themeIcon');
+const saved=localStorage.getItem('theme')||'dark';
+html.setAttribute('data-theme',saved);
+icon.className=saved==='dark'?'fas fa-sun':'fas fa-moon';
+btn.onclick=()=>{
+  const n=html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',n);
+  localStorage.setItem('theme',n);
+  icon.className=n==='dark'?'fas fa-sun':'fas fa-moon';
+};
+
+// MOBILE MENU
+const ham=document.getElementById('ham'),mob=document.getElementById('mobMenu');
+ham.onclick=()=>mob.classList.toggle('open');
+function closeMob(){mob.classList.remove('open');}
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// LIGHTBOX
+const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap');
+function openLB(src,cap){lbImg.src=src;lbCap.textContent=cap||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+function closeLB(){lb.classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+
+// NAVBAR SHADOW
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').style.boxShadow=window.scrollY>50?'0 4px 24px rgba(0,0,0,.3)':'none';
+});
+</script>
+</body>
+</html>
